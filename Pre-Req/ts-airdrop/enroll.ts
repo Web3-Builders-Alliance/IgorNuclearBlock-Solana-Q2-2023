@@ -10,7 +10,7 @@ const keypair = Keypair.fromSecretKey(new Uint8Array(wallet));
 const connection = new Connection("https://api.devnet.solana.com");
 
 // Github account
-const github = Buffer.from("https://github.com/NuclearBlock", "utf8");
+const github = Buffer.from("nuclearblock", "utf8");
 
 // Create our anchor provider
 const provider = new AnchorProvider(connection, new Wallet(keypair), { commitment: "confirmed"});
@@ -26,7 +26,7 @@ const [enrollment_key, _bump] = PublicKey.findProgramAddressSync(enrollment_seed
 (async () => {
   try {
       const txhash = await program.methods
-      .complete(github)
+      .update(github)
       .accounts({
           signer: keypair.publicKey,
           prereq: enrollment_key,
